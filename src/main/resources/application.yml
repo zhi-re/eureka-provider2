@@ -1,0 +1,33 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: server-provider-two # 指定服务名称为 server-provider-two
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+  redis:
+    open: true  # 是否开启redis缓存  true开启   false关闭
+    database: 10
+    host: 127.0.0.1
+    port: 6379
+    password:   # 密码（默认为空）
+    timeout: 6000  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms   # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10     # 连接池中的最大空闲连接
+        min-idle: 5      # 连接池中的最小空闲连接
+#    redisson:
+#      config: classpath:redisson.yml # 具体的每个配置项，见 org.redisson.config.Config 类。
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:  # 指定Eureka服务端的地址，这里为上面定义的Eureka服务端地址
+      defaultZone: http://localhost:8080/eureka/
+#      defaultZone: http://localhost:8080/eureka/,http://localhost:8081/eureka/
+    #   server:
+  #    enable-self-preservation: false  # 关闭保护模式
